@@ -1,0 +1,8 @@
+# chmod 755 06_append_tablas.sh
+# ./06_append_tablas.sh
+
+#awk -F, 'NR==1 || (FNR>1 && $5 !~ /^(<100|N\/A|-)$/)' *.csv > output.csv
+
+# 
+awk -F, 'NR==1 || (FNR>1 && FILENAME ~ /^db.*\.csv$/ && $5 !~ /^(<100|N\/A|-)$)/)' *.csv > output.csv
+# En este comando, utilizamos la variable FILENAME para verificar si el nombre del archivo coincide con la expresión regular ^db.*\.csv$, lo que significa que debe comenzar con "db" y terminar con ".csv". Además, se verifica que el campo $5 no cumple con la expresión regular deseada. Esto asegurará que solo se procesen los archivos que cumplen con el patrón especificado.
